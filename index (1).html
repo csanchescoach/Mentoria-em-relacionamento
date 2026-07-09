@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentoria em Relacionamento Amoroso | Claudia Sanches</title>
+  <meta name="description" content="Checklist: Estou pronta para um relacionamento saudável? Descubra em 5 minutos onde você está travada emocionalmente." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul: #1A3A5C;
+      --azul-medio: #2563A8;
+      --azul-claro: #EEF4FB;
+      --laranja: #E8621A;
+      --laranja-claro: #FFF3EC;
+      --branco: #FFFFFF;
+      --cinza: #6B7280;
+      --cinza-claro: #F8F9FA;
+      --texto: #1C2B3A;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--texto);
+      background: var(--branco);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--azul) 0%, #0F2440 60%, #1a1a2e 100%);
+      padding: 80px 24px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,98,26,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(232,98,26,0.15);
+      border: 1px solid rgba(232,98,26,0.4);
+      color: #FFA96A;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 40px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 54px);
+      color: var(--branco);
+      line-height: 1.2;
+      max-width: 760px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 span { color: #FF9052; }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--laranja);
+      color: var(--branco);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 30px rgba(232,98,26,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,98,26,0.5); }
+    .hero-meta {
+      margin-top: 24px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+    }
+    .hero-meta span { margin: 0 10px; }
+
+    /* ── STRIP DE PROVA ── */
+    .proof-strip {
+      background: var(--laranja);
+      padding: 14px 24px;
+      text-align: center;
+      color: var(--branco);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .proof-strip strong { font-weight: 700; }
+
+    /* ── WRAPPER ── */
+    .wrap { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── SOBRE A MENTORA ── */
+    .about {
+      padding: 64px 24px;
+      background: var(--cinza-claro);
+    }
+    .about-inner {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-avatar {
+      flex-shrink: 0;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--azul-medio), var(--laranja));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--branco);
+      font-weight: 700;
+    }
+    .about-text p { color: var(--cinza); line-height: 1.7; }
+    .about-text strong { color: var(--azul); }
+    .ig-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px;
+      color: var(--azul-medio);
+      font-size: 14px; font-weight: 600;
+      text-decoration: none;
+    }
+    .ig-link:hover { text-decoration: underline; }
+
+    /* ── CHECKLIST ── */
+    .checklist-section {
+      padding: 72px 24px;
+      background: var(--branco);
+    }
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: 10px;
+    }
+    .checklist-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      color: var(--azul);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+    .checklist-section .intro {
+      color: var(--cinza);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* progress bar */
+    .progress-wrap {
+      margin-bottom: 40px;
+    }
+    .progress-info {
+      display: flex; justify-content: space-between;
+      font-size: 13px; color: var(--cinza);
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      width: 100%; height: 8px;
+      background: var(--azul-claro);
+      border-radius: 8px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--azul-medio), var(--laranja));
+      border-radius: 8px;
+      transition: width .4s ease;
+      width: 0%;
+    }
+
+    /* category block */
+    .cat-block {
+      margin-bottom: 36px;
+    }
+    .cat-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .cat-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--azul);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .cat-title {
+      font-size: 15px; font-weight: 700;
+      color: var(--azul);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cat-score {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--cinza);
+      white-space: nowrap;
+    }
+
+    .item-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1.5px solid #E5ECF5;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      position: relative;
+    }
+    .item-row:hover { border-color: var(--azul-medio); background: var(--azul-claro); }
+    .item-row.checked { border-color: var(--azul-medio); background: var(--azul-claro); }
+    .item-checkbox {
+      width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px;
+      border: 2px solid #C0CCDB;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s, border-color .15s;
+    }
+    .item-row.checked .item-checkbox {
+      background: var(--azul-medio);
+      border-color: var(--azul-medio);
+    }
+    .item-checkbox svg { display: none; }
+    .item-row.checked .item-checkbox svg { display: block; }
+    .item-text { font-size: 15px; color: var(--texto); line-height: 1.5; flex: 1; }
+    .item-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .badge-atencao { background: #FFF3EC; color: #C04A00; border: 1px solid #FBBF97; }
+    .badge-essencial { background: #EEF4FB; color: #1A3A5C; border: 1px solid #A8C4E0; }
+
+    /* ── FORM DE CAPTURA ── */
+    .form-section {
+      background: linear-gradient(135deg, var(--azul) 0%, #0F2440 100%);
+      padding: 72px 24px;
+    }
+    .form-inner { max-width: 560px; margin: 0 auto; }
+    .form-inner .section-label { color: #FFA96A; }
+    .form-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 3vw, 34px);
+      color: var(--branco);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .form-inner .intro { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 36px; line-height: 1.65; }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 6px; }
+    .form-group input {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: var(--branco);
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-group input:focus { border-color: var(--laranja); background: rgba(255,255,255,0.1); }
+    .form-group input::placeholder { color: rgba(255,255,255,0.35); }
+
+    .btn-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--laranja);
+      color: var(--branco);
+      font-size: 17px;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(232,98,26,0.5);
+      transition: transform .2s, box-shadow .2s;
+      font-family: 'Inter', sans-serif;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,98,26,0.6); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-privacy {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      margin-top: 16px;
+    }
+
+    /* ── RESULT CARD ── */
+    .result-card {
+      display: none;
+      margin-top: 36px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+    }
+    .result-card.visible { display: block; animation: fadeSlide .5s ease; }
+    @keyframes fadeSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+    /* score header */
+    .rc-header {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      padding: 28px 28px 24px;
+      display: flex; align-items: center; gap: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .rc-ring {
+      flex-shrink: 0;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--azul-medio), var(--laranja));
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+    }
+    .rc-ring .num { font-size: 24px; font-weight: 800; color: #fff; line-height: 1; }
+    .rc-ring .of  { font-size: 10px; color: rgba(255,255,255,0.7); }
+    .rc-headline { flex: 1; }
+    .rc-headline h3 { font-family:'Playfair Display',serif; color:#fff; font-size: clamp(18px,2.5vw,22px); margin-bottom:4px; line-height:1.25; }
+    .rc-headline .rc-nivel { display:inline-block; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 12px; border-radius:20px; background:rgba(232,98,26,0.25); color:#FFA96A; border:1px solid rgba(232,98,26,0.4); }
+
+    /* body blocks */
+    .rc-body { padding: 0 28px 28px; }
+
+    .rc-loading {
+      padding: 32px 0;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      color: rgba(255,255,255,0.6); font-size: 15px;
+    }
+    .rc-spinner {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.15);
+      border-top-color: var(--laranja);
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .rc-block { margin-top: 24px; }
+    .rc-block-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #FFA96A; margin-bottom: 10px;
+    }
+    .rc-text { color: rgba(255,255,255,0.82); font-size: 15px; line-height: 1.75; }
+    .rc-text strong { color: #fff; font-weight: 600; }
+
+    .rc-lacunas { list-style: none; }
+    .rc-lacunas li {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 11px 14px; border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.55;
+    }
+    .rc-lacunas li .dot { flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--laranja); margin-top:5px; }
+
+    .rc-dores { }
+    .rc-dor-item {
+      padding: 14px 16px; border-radius: 10px;
+      background: rgba(232,98,26,0.08);
+      border-left: 3px solid var(--laranja);
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.82); font-size: 14px; line-height: 1.6;
+    }
+
+    .rc-cta-box {
+      margin-top: 28px; padding: 22px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(37,99,168,0.3), rgba(232,98,26,0.2));
+      border: 1px solid rgba(232,98,26,0.3);
+      text-align: center;
+    }
+    .rc-cta-box p { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.6; margin-bottom: 16px; }
+    .rc-cta-box a {
+      display: inline-block;
+      background: var(--laranja); color: #fff;
+      font-weight: 700; font-size: 15px;
+      padding: 14px 28px; border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(232,98,26,0.45);
+    }
+
+    #send-status { margin-top: 14px; font-size: 13px; font-weight: 600; text-align:center; }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      cursor: pointer;
+      z-index: 999;
+      transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ── POPUP WHATSAPP ── */
+    .wpp-popup {
+      position: fixed;
+      bottom: 100px; right: 28px;
+      width: 280px;
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      padding: 24px;
+      z-index: 998;
+      display: none;
+      animation: slideUp .25s ease;
+    }
+    .wpp-popup.visible { display: block; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .wpp-popup h4 { font-size: 15px; font-weight: 700; color: var(--azul); margin-bottom: 6px; }
+    .wpp-popup p { font-size: 13px; color: var(--cinza); line-height: 1.5; margin-bottom: 16px; }
+    .wpp-popup a {
+      display: block; text-align: center;
+      background: #25D366;
+      color: #fff;
+      font-weight: 700; font-size: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+    .wpp-close {
+      position: absolute; top: 10px; right: 14px;
+      background: none; border: none; cursor: pointer;
+      font-size: 18px; color: var(--cinza);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0A1929;
+      padding: 32px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    /* ── RESP ── */
+    @media (max-width: 600px) {
+      .about-inner { flex-direction: column; text-align: center; }
+      .cat-score { display: none; }
+    }
+
+    /* success animation */
+    @keyframes popIn { 0%{transform:scale(.8);opacity:0} 80%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
+    .item-row.checked { animation: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">Autoconhecimento • Relacionamentos • Transformação</div>
+  <h1>Você está pronta para um <span>relacionamento saudável?</span></h1>
+  <p class="hero-sub">Faça o checklist gratuito e descubra exatamente quais pontos estão te impedindo de construir o amor que você merece.</p>
+  <a href="#checklist" class="hero-cta">Quero fazer o teste agora →</a>
+  <p class="hero-meta">
+    <span>✓ 100% gratuito</span>
+    <span>✓ Resultado por e-mail</span>
+    <span>✓ 5 minutos</span>
+  </p>
+</section>
+
+<!-- ── PROOF STRIP ── -->
+<div class="proof-strip">
+  <strong>Claudia Sanches</strong> — Mentora de Desenvolvimento Pessoal e Relacionamentos &nbsp;|&nbsp; @claudia_sanches_coach
+</div>
+
+<!-- ── SOBRE A MENTORA ── -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-avatar">CS</div>
+    <div class="about-text">
+      <p><strong>Claudia Sanches</strong> é mentora especializada em desenvolvimento pessoal e relacionamentos amorosos. Ajuda mulheres a saírem de relacionamentos que drenam para construir vínculos que elevam — com autoconhecimento, limites saudáveis e amor-próprio como base.</p>
+      <a class="ig-link" href="https://instagram.com/claudia_sanches_coach" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @claudia_sanches_coach
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHECKLIST ── -->
+<section class="checklist-section" id="checklist">
+  <div class="wrap">
+    <span class="section-label">Checklist de Relacionamento Amoroso</span>
+    <h2>Estou pronta para um relacionamento saudável?</h2>
+    <p class="intro">Marque os itens que já conquistou em sua jornada. Seja honesta — cada espaço em branco é um convite para crescer. Ao final, preencha seus dados para receber uma análise personalizada no seu e-mail.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span>Seu progresso</span>
+        <span><strong id="count">0</strong> / 25 marcados &nbsp;·&nbsp; <strong id="pct">0</strong>%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+    </div>
+
+    <!-- CAT 1 -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-icon">💛</div>
+        <div class="cat-title">1. Cura Emocional</div>
+        <div class="cat-score" id="score-1">0 / 5</div>
+      </div>
+
+      <div class="item-row" data-cat="1" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo falar do meu ex sem sentir raiva, mágoa ou saudade que me paralisam</div>
+      </div>
+      <div class="item-row" data-cat="1" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não carrego a crença de que "todos os homens são iguais"</div>
+      </div>
+      <div class="item-row" data-cat="1" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não sinto que preciso de um relacionamento para me sentir completa <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="1" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo estar sozinha sem ansiedade ou sensação de vazio <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="1" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Identifiquei os padrões que me fizeram ficar em relacionamentos que me faziam mal <span class="item-badge badge-essencial">essencial</span></div>
+      </div>
+    </div>
+
+    <!-- CAT 2 -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-icon">🔵</div>
+        <div class="cat-title">2. Autoconhecimento e Limites</div>
+        <div class="cat-score" id="score-2">0 / 5</div>
+      </div>
+
+      <div class="item-row" data-cat="2" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Sei claramente quais são meus valores inegociáveis em um parceiro <span class="item-badge badge-essencial">essencial</span></div>
+      </div>
+      <div class="item-row" data-cat="2" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo dizer não sem sentir culpa excessiva ou medo de perder a pessoa</div>
+      </div>
+      <div class="item-row" data-cat="2" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Tenho clareza sobre meu estilo de apego (ansioso, evitativo ou seguro)</div>
+      </div>
+      <div class="item-row" data-cat="2" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não me anulo para agradar ou manter um relacionamento <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="2" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo expressar minhas necessidades sem esperar que o outro adivinhe</div>
+      </div>
+    </div>
+
+    <!-- CAT 3 -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-icon">🔴</div>
+        <div class="cat-title">3. Reconhecendo Bandeiras Vermelhas</div>
+        <div class="cat-score" id="score-3">0 / 5</div>
+      </div>
+
+      <div class="item-row" data-cat="3" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Reconheço quando alguém usa amor e afeto como moeda de troca (love bombing)</div>
+      </div>
+      <div class="item-row" data-cat="3" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Sei identificar comportamentos manipulativos antes de me envolver profundamente</div>
+      </div>
+      <div class="item-row" data-cat="3" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não confundo intensidade com profundidade — paixão rápida não é conexão de verdade <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="3" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo perceber inconsistências entre o que a pessoa fala e o que faz</div>
+      </div>
+      <div class="item-row" data-cat="3" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Sei quando estou racionalizando comportamentos ruins de alguém que gosto <span class="item-badge badge-essencial">essencial</span></div>
+      </div>
+    </div>
+
+    <!-- CAT 4 -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-icon">🌟</div>
+        <div class="cat-title">4. Padrão e Critérios de Escolha</div>
+        <div class="cat-score" id="score-4">0 / 5</div>
+      </div>
+
+      <div class="item-row" data-cat="4" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Tenho clareza sobre o perfil de parceiro que realmente combina com minha vida</div>
+      </div>
+      <div class="item-row" data-cat="4" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não me apego a potencial — avalio quem a pessoa é hoje, não quem poderia ser</div>
+      </div>
+      <div class="item-row" data-cat="4" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Consigo encerrar conexões que não têm futuro sem me sentir obrigada a continuar <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="4" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não confundo atenção e presença com interesse genuíno e intenção séria</div>
+      </div>
+      <div class="item-row" data-cat="4" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Tenho expectativas reais — não busco perfeição, mas busco compatibilidade <span class="item-badge badge-essencial">essencial</span></div>
+      </div>
+    </div>
+
+    <!-- CAT 5 -->
+    <div class="cat-block">
+      <div class="cat-header">
+        <div class="cat-icon">🧡</div>
+        <div class="cat-title">5. Mentalidade e Prontidão</div>
+        <div class="cat-score" id="score-5">0 / 5</div>
+      </div>
+
+      <div class="item-row" data-cat="5" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Acredito que mereço um relacionamento saudável e recíproco</div>
+      </div>
+      <div class="item-row" data-cat="5" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Estou disposta a trabalhar meu lado em uma relação, não apenas cobrar do outro</div>
+      </div>
+      <div class="item-row" data-cat="5" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Não tenho pressa que me faça aceitar menos do que mereço <span class="item-badge badge-atencao">atenção</span></div>
+      </div>
+      <div class="item-row" data-cat="5" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Tenho uma vida com propósito e pessoas que me sustentam além de um parceiro</div>
+      </div>
+      <div class="item-row" data-cat="5" onclick="toggle(this)">
+        <div class="item-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="item-text">Estou aberta a receber orientação e a me desenvolver emocionalmente <span class="item-badge badge-essencial">essencial</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FORM ── -->
+<section class="form-section" id="form">
+  <div class="form-inner">
+    <span class="section-label">Receba sua análise</span>
+    <h2>Quero ver meu resultado personalizado</h2>
+    <p class="intro">Preencha abaixo para receber no seu e-mail uma análise com os pontos que merecem mais atenção e como a mentoria pode te ajudar a avançar.</p>
+
+    <div class="form-group">
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" placeholder="Como você quer ser chamada?" />
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="seu@email.com" />
+    </div>
+    <div class="form-group">
+      <label for="whatsapp">WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="(21) 99999-9999" />
+    </div>
+
+    <button class="btn-submit" id="btn-enviar" onclick="enviarForm()">
+      Quero minha análise gratuita →
+    </button>
+    <p class="form-privacy">🔒 Seus dados estão seguros. Sem spam.</p>
+
+    <div class="result-card" id="result-card">
+      <!-- header com pontuação -->
+      <div class="rc-header">
+        <div class="rc-ring">
+          <div class="num" id="res-num">0</div>
+          <div class="of">de 25</div>
+        </div>
+        <div class="rc-headline">
+          <span class="rc-nivel" id="res-nivel">Analisando…</span>
+          <h3 id="res-titulo" style="margin-top:8px"></h3>
+        </div>
+      </div>
+
+      <!-- corpo do diagnóstico (preenchido pela IA) -->
+      <div class="rc-body">
+        <div class="rc-loading" id="rc-loading">
+          <div class="rc-spinner"></div>
+          <span>Gerando seu diagnóstico personalizado…</span>
+        </div>
+        <div id="rc-content" style="display:none">
+          <div class="rc-block">
+            <div class="rc-block-title">📋 Seu Perfil Emocional</div>
+            <div class="rc-text" id="rc-perfil"></div>
+          </div>
+          <div class="rc-block">
+            <div class="rc-block-title">⚠️ Principais Lacunas Identificadas</div>
+            <ul class="rc-lacunas" id="rc-lacunas"></ul>
+          </div>
+          <div class="rc-block">
+            <div class="rc-block-title">💔 Dores que Isso Pode Estar Causando</div>
+            <div class="rc-dores" id="rc-dores"></div>
+          </div>
+          <div class="rc-block">
+            <div class="rc-block-title">🧭 O Que Você Mais Precisa Agora</div>
+            <div class="rc-text" id="rc-caminho"></div>
+          </div>
+          <div class="rc-cta-box">
+            <p id="rc-cta-text"></p>
+            <a href="https://wa.me/5521975206104?text=Oi%20Claudia!%20Fiz%20o%20checklist%20e%20quero%20conversar%20sobre%20a%20mentoria." target="_blank" rel="noopener">
+              Quero dar o próximo passo →
+            </a>
+          </div>
+          <p id="send-status"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 Claudia Sanches — Mentora de Desenvolvimento Pessoal e Relacionamentos</p>
+  <p style="margin-top:6px"><a href="https://instagram.com/claudia_sanches_coach" target="_blank">@claudia_sanches_coach</a></p>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<div class="whatsapp-float" onclick="toggleWpp()" title="Fale com a Claudia">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</div>
+
+<div class="wpp-popup" id="wpp-popup">
+  <button class="wpp-close" onclick="toggleWpp()">✕</button>
+  <h4>Fale com a Claudia 💬</h4>
+  <p>Tem dúvidas sobre a mentoria? Me chama no WhatsApp — adoro conversar com você!</p>
+  <a href="https://wa.me/5521975206104?text=Oi%20Claudia!%20Fiz%20o%20checklist%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria." target="_blank" rel="noopener">
+    Conversar agora →
+  </a>
+</div>
+
+<script>
+  // ⚠️ Depois de publicar o Google Apps Script como Web App, cole a URL gerada aqui:
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUySdwuXuDg9WJemJcrs5sUCocndB3dC_7oyYuJx0zdnSKnl1It4o5IBSnvNDDzeXYkg/exec';
+
+  // ── STATE ──
+  const TOTAL = 25;
+  let checked = 0;
+  const catCounts = {1:0, 2:0, 3:0, 4:0, 5:0};
+  let checklistData = [];
+
+  function toggle(el) {
+    const isOn = el.classList.toggle('checked');
+    const cat = parseInt(el.dataset.cat);
+    const text = el.querySelector('.item-text').textContent.trim();
+
+    if (isOn) { checked++; catCounts[cat]++; checklistData.push(text); }
+    else { checked--; catCounts[cat]--; checklistData = checklistData.filter(t => t !== text); }
+
+    updateUI();
+  }
+
+  function updateUI() {
+    const pct = Math.round((checked / TOTAL) * 100);
+    document.getElementById('count').textContent = checked;
+    document.getElementById('pct').textContent = pct;
+    document.getElementById('fill').style.width = pct + '%';
+    for (let c = 1; c <= 5; c++) {
+      document.getElementById('score-' + c).textContent = catCounts[c] + ' / 5';
+    }
+  }
+
+  // ── FORM ──
+  async function enviarForm() {
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+
+    if (!nome || !email || !whatsapp) { alert('Por favor, preencha seu nome, e-mail e WhatsApp.'); return; }
+    if (!email.includes('@')) { alert('Por favor, insira um e-mail válido.'); return; }
+
+    const btn = document.getElementById('btn-enviar');
+    btn.disabled = true;
+    btn.textContent = 'Gerando diagnóstico…';
+
+    const pct = Math.round((checked / TOTAL) * 100);
+
+    // Mapear itens NÃO marcados por categoria
+    const allItems = {};
+    document.querySelectorAll('.item-row').forEach(row => {
+      const cat = row.dataset.cat;
+      if (!allItems[cat]) allItems[cat] = { marcados: [], naoMarcados: [] };
+      const text = row.querySelector('.item-text').textContent.replace(/atenção|essencial/gi,'').trim();
+      if (row.classList.contains('checked')) allItems[cat].marcados.push(text);
+      else allItems[cat].naoMarcados.push(text);
+    });
+
+    const catNames = {
+      '1': 'Cura Emocional',
+      '2': 'Autoconhecimento e Limites',
+      '3': 'Reconhecendo Bandeiras Vermelhas',
+      '4': 'Padrão e Critérios de Escolha',
+      '5': 'Mentalidade e Prontidão'
+    };
+
+    let resumoRespostas = '';
+    for (let c = 1; c <= 5; c++) {
+      const d = allItems[String(c)];
+      resumoRespostas += `\n## ${catNames[c]} (${d.marcados.length}/5)\n`;
+      if (d.marcados.length) resumoRespostas += `✅ Conquistado:\n- ${d.marcados.join('\n- ')}\n`;
+      if (d.naoMarcados.length) resumoRespostas += `❌ Ainda não conquistado:\n- ${d.naoMarcados.join('\n- ')}\n`;
+    }
+
+    // Nível geral
+    let nivelLabel = '';
+    if (pct >= 80) nivelLabel = 'Pronta com ajustes finos';
+    else if (pct >= 60) nivelLabel = 'Em desenvolvimento — lacunas importantes';
+    else if (pct >= 40) nivelLabel = 'Bloqueios emocionais significativos';
+    else nivelLabel = 'Momento de cuidado e reconstrução emocional';
+
+    document.getElementById('res-num').textContent = checked;
+    document.getElementById('res-nivel').textContent = nivelLabel;
+    document.getElementById('res-titulo').textContent = `${pct}% de prontidão emocional`;
+
+    const card = document.getElementById('result-card');
+    card.classList.add('visible');
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // ── CHAMADA À API DO CLAUDE ──
+    const prompt = `Você é Claudia Sanches, mentora de desenvolvimento pessoal e relacionamentos amorosos. 
+Uma lead acaba de preencher seu checklist "Estou pronta para um relacionamento saudável?" e você vai gerar um diagnóstico profundo, empático e personalizado com base nas respostas dela.
+
+Nome da lead: ${nome}
+Pontuação total: ${checked}/25 (${pct}%)
+Nível: ${nivelLabel}
+
+Respostas detalhadas por categoria:
+${resumoRespostas}
+
+Gere um diagnóstico em JSON com exatamente esta estrutura (sem markdown, apenas JSON puro):
+{
+  "perfil": "Parágrafo de 3-4 frases descrevendo o perfil emocional desta pessoa com base nas respostas. Seja específica, nomeie padrões que ela provavelmente vive. Use linguagem direta, acolhedora e que gere identificação. Não seja genérica.",
+  "lacunas": [
+    "Lacuna 1: descrição em 1-2 frases do que esta ausência específica revela sobre ela e o impacto no relacionamento",
+    "Lacuna 2: ...",
+    "Lacuna 3: ..."
+  ],
+  "dores": [
+    "Dor concreta e emocional que ela provavelmente sente no dia a dia por causa destas lacunas. Ex: acordar às 3h pensando se ele ainda gosta dela.",
+    "Outra dor real e específica",
+    "Outra dor"
+  ],
+  "caminho": "2-3 frases sobre o que ela mais precisa agora — seja honesta sobre o trabalho necessário, mas com esperança real. Mencione que a mentoria trabalha exatamente esses pontos.",
+  "cta": "1 frase poderosa e pessoal que convida ela a dar o próximo passo com você. Não seja genérica — dialogue com o perfil dela."
+}
+
+Regras importantes:
+- Use o nome ${nome} ao menos uma vez no diagnóstico
+- Seja específica: cite os itens não conquistados de forma indireta (sem listar mecanicamente)
+- As dores devem ser emocionalmente verdadeiras, não abstratas
+- Máximo de 4 lacunas (as mais impactantes)
+- Máximo de 3 dores
+- Tom: mentora que conhece bem a dor desta mulher, não terapeuta fria nem coach motivacional vazio
+- Retorne APENAS o JSON, sem nenhum texto antes ou depois`;
+
+    try {
+      const res = await fetch('/api/diagnostico', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Falha ao gerar diagnóstico');
+      const raw = data.content.map(b => b.text || '').join('');
+      const clean = raw.replace(/```json|```/g, '').trim();
+      const diag = JSON.parse(clean);
+
+      // Preencher perfil
+      document.getElementById('rc-perfil').innerHTML = diag.perfil;
+
+      // Preencher lacunas
+      const lacunasList = document.getElementById('rc-lacunas');
+      lacunasList.innerHTML = '';
+      diag.lacunas.forEach(l => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="dot"></span><span>${l}</span>`;
+        lacunasList.appendChild(li);
+      });
+
+      // Preencher dores
+      const doresEl = document.getElementById('rc-dores');
+      doresEl.innerHTML = '';
+      diag.dores.forEach(d => {
+        const div = document.createElement('div');
+        div.className = 'rc-dor-item';
+        div.textContent = d;
+        doresEl.appendChild(div);
+      });
+
+      // Preencher caminho e CTA
+      document.getElementById('rc-caminho').innerHTML = diag.caminho;
+      document.getElementById('rc-cta-text').textContent = diag.cta;
+
+      document.getElementById('rc-loading').style.display = 'none';
+      document.getElementById('rc-content').style.display = 'block';
+
+      // Enviar e-mail com diagnóstico completo
+      await enviarEmail(nome, email, whatsapp, pct, nivelLabel, diag, resumoRespostas);
+
+    } catch(err) {
+      document.getElementById('rc-loading').innerHTML = '<span style="color:#FCA5A5">Não foi possível gerar o diagnóstico agora. Por favor, entre em contato pelo WhatsApp.</span>';
+    }
+
+    btn.textContent = 'Enviado ✓';
+  }
+
+  async function enviarEmail(nome, email, whatsapp, pct, nivel, diag, resumo) {
+    const payload = {
+      nome, email, whatsapp,
+      pontuacao: `${checked} / 25 (${pct}%)`,
+      nivel,
+      perfil_emocional: diag.perfil,
+      lacunas_principais: diag.lacunas.join(' | '),
+      dores_identificadas: diag.dores.join(' | '),
+      caminho_sugerido: diag.caminho,
+      respostas_detalhadas: resumo
+    };
+    try {
+      // mode 'no-cors' é necessário para Apps Script; a resposta não pode ser lida,
+      // mas o envio e a gravação na planilha acontecem normalmente.
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      document.getElementById('send-status').innerHTML = '<span style="color:#86EFAC">✓ Diagnóstico enviado! A Claudia também recebeu seus dados.</span>';
+    } catch {
+      document.getElementById('send-status').innerHTML = '<span style="color:#FCA5A5">Diagnóstico gerado, mas houve um problema ao enviar seus dados. Chame no WhatsApp para garantir contato.</span>';
+    }
+  }
+
+  // ── WHATSAPP POPUP ──
+  let wppOpen = false;
+  function toggleWpp() {
+    wppOpen = !wppOpen;
+    document.getElementById('wpp-popup').classList.toggle('visible', wppOpen);
+  }
+
+  // Abrir popup automático depois de 8s
+  setTimeout(() => {
+    if (!wppOpen) {
+      wppOpen = true;
+      document.getElementById('wpp-popup').classList.add('visible');
+    }
+  }, 8000);
+
+  // Smooth scroll no CTA do hero
+  document.querySelector('.hero-cta').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('checklist').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
