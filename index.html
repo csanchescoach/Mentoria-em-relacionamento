@@ -914,7 +914,13 @@ Regras importantes:
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Falha ao gerar diagnóstico');
       const raw = data.content.map(b => b.text || '').join('');
-      const clean = raw.replace(/```json|```/g, '').trim();
+      let clean = raw.replace(/```json|```/g, '').trim();
+      // Extrai apenas o trecho entre a primeira { e a última }, ignorando qualquer texto extra que o modelo adicione
+      const firstBrace = clean.indexOf('{');
+      const lastBrace = clean.lastIndexOf('}');
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        clean = clean.substring(firstBrace, lastBrace + 1);
+      }
       diag = JSON.parse(clean);
     } catch (err) {
       console.error('Erro ao gerar diagnóstico com IA:', err);
