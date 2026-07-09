@@ -901,6 +901,9 @@ Regras importantes:
 - Tom: mentora que conhece bem a dor desta mulher, não terapeuta fria nem coach motivacional vazio
 - Retorne APENAS o JSON, sem nenhum texto antes ou depois`;
 
+    let diag;
+    let aiFailed = false;
+
     try {
       const res = await fetch('/api/diagnostico', {
         method: 'POST',
@@ -912,42 +915,62 @@ Regras importantes:
       if (!res.ok) throw new Error(data.error || 'Falha ao gerar diagnóstico');
       const raw = data.content.map(b => b.text || '').join('');
       const clean = raw.replace(/```json|```/g, '').trim();
-      const diag = JSON.parse(clean);
+      diag = JSON.parse(clean);
+    } catch (err) {
+      console.error('Erro ao gerar diagnóstico com IA:', err);
+      aiFailed = true;
+      diag = {
+        perfil: `${nome}, seu diagnóstico personalizado está sendo preparado manualmente pela Claudia devido a uma instabilidade técnica no momento do seu envio. Ela vai analisar suas respostas com atenção e entrar em contato.`,
+        lacunas: [],
+        dores: [],
+        caminho: 'A Claudia vai revisar suas respostas pessoalmente e te chamar no WhatsApp com as orientações certas para o seu momento.',
+        cta: 'Chame no WhatsApp para garantir que seu diagnóstico chegue certinho até você.'
+      };
+    }
 
-      // Preencher perfil
-      document.getElementById('rc-perfil').innerHTML = diag.perfil;
+    // Preencher perfil
+    document.getElementById('rc-perfil').innerHTML = diag.perfil;
 
-      // Preencher lacunas
-      const lacunasList = document.getElementById('rc-lacunas');
-      lacunasList.innerHTML = '';
-      diag.lacunas.forEach(l => {
-        const li = document.createElement('li');
-        li.innerHTML = `<span class="dot"></span><span>${l}</span>`;
-        lacunasList.appendChild(li);
-      });
+    // Preencher lacunas
+    const lacunasList = document.getElementById('rc-lacunas');
+    lacunasList.innerHTML = '';
+    diag.lacunas.forEach(l => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="dot"></span><span>${l}</span>`;
+      lacunasList.appendChild(li);
+    });
 
-      // Preencher dores
-      const doresEl = document.getElementById('rc-dores');
-      doresEl.innerHTML = '';
-      diag.dores.forEach(d => {
-        const div = document.createElement('div');
-        div.className = 'rc-dor-item';
-        div.textContent = d;
-        doresEl.appendChild(div);
-      });
+    // Preencher dores
+    const doresEl = document.getElementById('rc-dores');
+    doresEl.innerHTML = '';
+    diag.dores.forEach(d => {
+      const div = document.createElement('div');
+      div.className = 'rc-dor-item';
+      div.textContent = d;
+      doresEl.appendChild(div);
+    });
 
-      // Preencher caminho e CTA
-      document.getElementById('rc-caminho').innerHTML = diag.caminho;
-      document.getElementById('rc-cta-text').textContent = diag.cta;
+    // Preencher caminho e CTA
+    document.getElementById('rc-caminho').innerHTML = diag.caminho;
+    document.getElementById('rc-cta-text').textContent = diag.cta;
 
-      document.getElementById('rc-loading').style.display = 'none';
-      document.getElementById('rc-content').style.display = 'block';
+    document.getElementById('rc-loading').style.display = 'none';
+    document.getElementById('rc-content').style.display = 'block';
 
-      // Enviar e-mail com diagnóstico completo
+    if (aiFailed) {
+      const avisoEl = document.createElement('p');
+      avisoEl.style.color = '#FCA5A5';
+      avisoEl.style.marginTop = '12px';
+      avisoEl.textContent = 'Seus dados foram recebidos com sucesso! O diagnóstico detalhado com IA teve uma instabilidade momentânea, mas a Claudia já tem suas respostas e vai te enviar uma análise pessoal em breve.';
+      document.getElementById('rc-content').appendChild(avisoEl);
+    }
+
+    // Enviar e-mail com diagnóstico completo — SEMPRE executa, mesmo se a IA falhar acima,
+    // garantindo que nenhum lead seja perdido.
+    try {
       await enviarEmail(nome, email, whatsapp, pct, nivelLabel, diag, resumoRespostas);
-
-    } catch(err) {
-      document.getElementById('rc-loading').innerHTML = '<span style="color:#FCA5A5">Não foi possível gerar o diagnóstico agora. Por favor, entre em contato pelo WhatsApp.</span>';
+    } catch (err) {
+      console.error('Erro ao enviar/salvar lead:', err);
     }
 
     btn.textContent = 'Enviado ✓';
