@@ -733,6 +733,10 @@
             <div class="rc-text" id="rc-perfil"></div>
           </div>
           <div class="rc-block">
+            <div class="rc-block-title">🔎 Pontos de Atenção</div>
+            <ul class="rc-lacunas" id="rc-pontos-atencao"></ul>
+          </div>
+          <div class="rc-block">
             <div class="rc-block-title">⚠️ Principais Lacunas Identificadas</div>
             <ul class="rc-lacunas" id="rc-lacunas"></ul>
           </div>
@@ -877,28 +881,37 @@ ${resumoRespostas}
 
 Gere um diagnóstico em JSON com exatamente esta estrutura (sem markdown, apenas JSON puro):
 {
-  "perfil": "Parágrafo de 3-4 frases descrevendo o perfil emocional desta pessoa com base nas respostas. Seja específica, nomeie padrões que ela provavelmente vive. Use linguagem direta, acolhedora e que gere identificação. Não seja genérica.",
+  "perfil": "Parágrafo de 5-7 frases descrevendo o perfil emocional desta pessoa com base nas respostas. Seja específica, nomeie padrões que ela provavelmente vive, cite como esses padrões provavelmente aparecem no dia a dia dela (pensamentos, comportamentos, reações em relacionamentos passados ou atuais). Use linguagem direta, acolhedora e que gere identificação profunda. Não seja genérica nem superficial — desenvolva bem cada ideia antes de passar para a próxima.",
+  "pontos_atencao": [
+    "Ponto de atenção 1: com base na pontuação geral e nas categorias com mais itens não marcados, descreva em 2-3 frases um padrão de risco específico que merece atenção prioritária, e por que isso importa agora",
+    "Ponto de atenção 2: outro padrão de risco relevante, também em 2-3 frases, conectando com respostas específicas dela",
+    "Ponto de atenção 3 (opcional, só se fizer sentido pela pontuação): outro ponto relevante"
+  ],
   "lacunas": [
-    "Lacuna 1: descrição em 1-2 frases do que esta ausência específica revela sobre ela e o impacto no relacionamento",
+    "Lacuna 1: descrição em 2-3 frases do que esta ausência específica revela sobre ela e o impacto no relacionamento — desenvolva o raciocínio, não apenas afirme",
     "Lacuna 2: ...",
-    "Lacuna 3: ..."
+    "Lacuna 3: ...",
+    "Lacuna 4: ..."
   ],
   "dores": [
-    "Dor concreta e emocional que ela provavelmente sente no dia a dia por causa destas lacunas. Ex: acordar às 3h pensando se ele ainda gosta dela.",
-    "Outra dor real e específica",
+    "Dor concreta e emocional, desenvolvida em 2 frases, que ela provavelmente sente no dia a dia por causa destas lacunas. Ex: acordar às 3h pensando se ele ainda gosta dela, e passar o resto do dia analisando cada mensagem em busca de uma resposta.",
+    "Outra dor real e específica, também desenvolvida",
     "Outra dor"
   ],
-  "caminho": "2-3 frases sobre o que ela mais precisa agora — seja honesta sobre o trabalho necessário, mas com esperança real. Mencione que a mentoria trabalha exatamente esses pontos.",
-  "cta": "1 frase poderosa e pessoal que convida ela a dar o próximo passo com você. Não seja genérica — dialogue com o perfil dela."
+  "caminho": "3-4 frases sobre o que ela mais precisa agora — seja honesta sobre o trabalho necessário, desenvolva o raciocínio de por que esse é o próximo passo certo para ela, mas com esperança real. Mencione que a mentoria trabalha exatamente esses pontos.",
+  "cta": "1-2 frases poderosas e pessoais que convidam ela a dar o próximo passo com você. Não seja genérica — dialogue com o perfil dela."
 }
 
 Regras importantes:
 - Use o nome ${nome} ao menos uma vez no diagnóstico
 - Seja específica: cite os itens não conquistados de forma indireta (sem listar mecanicamente)
-- As dores devem ser emocionalmente verdadeiras, não abstratas
+- As dores e pontos de atenção devem ser emocionalmente verdadeiros e bem desenvolvidos, não abstratos nem curtos demais
+- Baseie os pontos_atencao especificamente na pontuação (${pct}%) e em quais categorias tiveram mais itens não marcados
 - Máximo de 4 lacunas (as mais impactantes)
 - Máximo de 3 dores
+- 2 a 3 pontos de atenção
 - Tom: mentora que conhece bem a dor desta mulher, não terapeuta fria nem coach motivacional vazio
+- Desenvolva bem cada campo — este diagnóstico deve parecer completo e aprofundado, nunca curto ou corrido
 - Retorne APENAS o JSON, sem nenhum texto antes ou depois`;
 
     let diag;
@@ -927,6 +940,7 @@ Regras importantes:
       aiFailed = true;
       diag = {
         perfil: `${nome}, seu diagnóstico personalizado está sendo preparado manualmente pela Claudia devido a uma instabilidade técnica no momento do seu envio. Ela vai analisar suas respostas com atenção e entrar em contato.`,
+        pontos_atencao: [],
         lacunas: [],
         dores: [],
         caminho: 'A Claudia vai revisar suas respostas pessoalmente e te chamar no WhatsApp com as orientações certas para o seu momento.',
@@ -936,6 +950,15 @@ Regras importantes:
 
     // Preencher perfil
     document.getElementById('rc-perfil').innerHTML = diag.perfil;
+
+    // Preencher pontos de atenção
+    const pontosList = document.getElementById('rc-pontos-atencao');
+    pontosList.innerHTML = '';
+    (diag.pontos_atencao || []).forEach(p => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="dot"></span><span>${p}</span>`;
+      pontosList.appendChild(li);
+    });
 
     // Preencher lacunas
     const lacunasList = document.getElementById('rc-lacunas');
@@ -983,15 +1006,39 @@ Regras importantes:
   }
 
   async function enviarEmail(nome, email, whatsapp, pct, nivel, diag, resumo) {
+    // Monta o número no formato internacional (Brasil = 55) para o link do WhatsApp
+    const digitsOnly = (whatsapp || '').replace(/\D/g, '');
+    const numeroWhats = digitsOnly.startsWith('55') ? digitsOnly : `55${digitsOnly}`;
+
+    // Monta a mensagem pronta com o diagnóstico resumido
+    let msgWhats = `Olá ${nome}, que bom que você fez o teste e vai receber seu diagnóstico de relacionamento com muitos insights, te ajudando no autoconhecimento!\n\n`;
+    msgWhats += `📊 Sua pontuação: ${checked}/25 (${pct}%) — ${nivel}\n\n`;
+    if (diag.perfil) msgWhats += `📋 *Seu perfil emocional:*\n${diag.perfil}\n\n`;
+    if (diag.pontos_atencao && diag.pontos_atencao.length) {
+      msgWhats += `🔎 *Pontos de atenção:*\n`;
+      diag.pontos_atencao.forEach(p => { msgWhats += `- ${p}\n`; });
+      msgWhats += `\n`;
+    }
+    if (diag.lacunas && diag.lacunas.length) {
+      msgWhats += `⚠️ *Principais lacunas:*\n`;
+      diag.lacunas.forEach(l => { msgWhats += `- ${l}\n`; });
+      msgWhats += `\n`;
+    }
+    msgWhats += `Depois me diz o que você achou, se fez sentido para você. 💬`;
+
+    const whatsappLink = `https://wa.me/${numeroWhats}?text=${encodeURIComponent(msgWhats)}`;
+
     const payload = {
       nome, email, whatsapp,
       pontuacao: `${checked} / 25 (${pct}%)`,
       nivel,
       perfil_emocional: diag.perfil,
+      pontos_atencao: (diag.pontos_atencao || []).join(' | '),
       lacunas_principais: diag.lacunas.join(' | '),
       dores_identificadas: diag.dores.join(' | '),
       caminho_sugerido: diag.caminho,
-      respostas_detalhadas: resumo
+      respostas_detalhadas: resumo,
+      link_whatsapp: whatsappLink
     };
     try {
       // mode 'no-cors' é necessário para Apps Script; a resposta não pode ser lida,
