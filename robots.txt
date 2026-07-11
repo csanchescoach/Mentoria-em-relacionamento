@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mentoria-em-relacionamento-amoroso.vercel.app/sitemap.xml
