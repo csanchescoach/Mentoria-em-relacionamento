@@ -878,22 +878,44 @@
 
   async function enviarEmail(nome, email, whatsapp, pct, nivel, diag, resumo) {
     try {
+      const corpo = `NOVA LEAD — DIAGNÓSTICO EMOCIONAL
+==========================================
+Nome: ${nome}
+E-mail: ${email}
+WhatsApp: ${whatsapp}
+Pontuação: ${checked}/25 (${pct}%)
+Nível: ${nivel}
+
+PERFIL EMOCIONAL
+----------------
+${diag.perfil}
+
+PRINCIPAIS BLOQUEIOS
+--------------------
+${diag.lacunas.map((l,i) => `${i+1}. ${l}`).join('\n')}
+
+DORES IDENTIFICADAS
+-------------------
+${diag.dores.map((d,i) => `${i+1}. ${d}`).join('\n')}
+
+O QUE ELA MAIS PRECISA AGORA
+-----------------------------
+${diag.caminho}
+
+==========================================
+RESPOSTAS DO CHECKLIST
+${resumo}`;
+
       const r = await fetch('https://formsubmit.co/ajax/csanchescoach@gmail.com', {
         method: 'POST',
         headers: {'Content-Type':'application/json','Accept':'application/json'},
         body: JSON.stringify({
           nome, email, whatsapp,
-          pontuacao:        `${checked}/25 (${pct}%)`,
-          nivel,
-          perfil_emocional: diag.perfil,
-          bloqueios:        diag.lacunas.join(' | '),
-          dores:            diag.dores.join(' | '),
-          proximo_passo:    diag.caminho,
-          respostas:        resumo,
-          _cc:              'csanchescoach@gmail.com',
-          _subject:         `[Lead] ${nome} · ${pct}% · Diagnóstico Emocional`,
-          _template:        'table',
-          _captcha:         'false'
+          mensagem: corpo,
+          _cc:      'csanchescoach@gmail.com',
+          _subject: `[Lead] ${nome} · ${pct}% · Diagnóstico Emocional`,
+          _template: 'box',
+          _captcha: 'false'
         })
       });
       const d = await r.json();
