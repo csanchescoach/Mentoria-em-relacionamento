@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapa dos Padrões no Amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF6F3;--card:#fff;--ink:#2B1F27;--mut:#5B4A55;--acc:#7A2E55;--on:#fff;--soft:#F3DCE2;--line:#D9BFC9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1D1519;--card:#2A1E24;--ink:#F6EBEF;--mut:#CDB8C1;--acc:#E7A3C3;--on:#2B1F27;--soft:#3A2630;--line:#5A4450}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:32px 20px 56px}
+h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 12px}
+h1{font-size:34px}h2{font-size:26px}
+.tag{font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--acc);margin-bottom:12px}
+.bar{height:8px;border-radius:4px;background:var(--soft);margin:8px 0 24px}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--acc);transition:width .3s}
+button,input{font:inherit}
+.opt{display:block;width:100%;min-height:56px;text-align:left;padding:12px 18px;margin:0 0 12px;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:14px;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--acc)}
+.opt.sel{background:var(--acc);border-color:var(--acc);color:var(--on)}
+.btn{min-height:52px;padding:0 24px;border-radius:14px;border:1.5px solid var(--acc);background:var(--acc);color:var(--on);font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.row .btn{flex:1}
+label{display:block;font-weight:500;margin:20px 0 8px}
+input{width:100%;min-height:52px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:0 0 16px}
+.card h3{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0 0 6px}
+.card p{margin:8px 0 0;color:var(--mut)}
+.meter{height:10px;border-radius:5px;background:var(--soft);margin:8px 0}
+.meter i{display:block;height:10px;border-radius:5px;background:var(--acc)}
+.lvl{font-size:13px;font-weight:600;color:var(--acc)}
+.cta{background:var(--soft);border-radius:18px;padding:22px;margin-top:24px}
+small{color:var(--mut);display:block;margin-top:20px}
+</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<main id="app"></main>
+<script>
+// ====== CONFIGURAÇÃO (edite aqui) ======
+const WHATSAPP = "5521975206104";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBsQgOFzwT47vieUGiXiuHhr9aQb6V0wZ4Tepx_XUA8UDZQ45ilaV_sFKt8T_QYfBy/exec"; // ex.: "5527999999999" (só números). Vazio = esconde o botão.
+const Q = [
+ {d:"vinculo",t:"Quando a pessoa que você ama demora para responder, o que costuma acontecer?",o:[["Imagino o pior e fico muito ansioso(a) até ela responder",0],["Finjo que não ligo e me afasto",1],["Fico incomodado(a), mas me ocupo e converso depois",3],["Sinto desconforto, mas lembro que há várias explicações possíveis",2]]},
+ {d:"vinculo",t:"Quando alguém se aproxima demais emocionalmente, qual é sua primeira reação?",o:[["Quero me aproximar também, sem pressa",3],["Sinto necessidade de me afastar",1],["Temo ser abandonado(a) depois",0],["Desconfio das intenções da pessoa",1]]},
+ {d:"limites",t:"Com que frequência você diz “sim” quando queria dizer “não” na relação?",o:[["Quase sempre, para evitar conflito",0],["Às vezes, depois me arrependo",1],["Raramente; costumo me posicionar",3],["Digo não, mas me sinto culpado(a)",2]]},
+ {d:"limites",t:"Quando suas necessidades entram em choque com as da outra pessoa, você…",o:[["Deixo as minhas de lado",0],["Negocio para encontrarmos um meio-termo",3],["Imponho a minha vontade",1],["Evito o assunto até passar",1]]},
+ {d:"comunicacao",t:"Diante de uma mágoa, o que você costuma fazer?",o:[["Guardo até explodir",0],["Converso com calma assim que possível",3],["Uso ironia ou silêncio para mostrar que estou chateado(a)",1],["Converso, mas demoro a dizer o que realmente sinto",2]]},
+ {d:"comunicacao",t:"Pedir o que você precisa na relação é algo que…",o:[["Me parece difícil ou um peso para o outro",0],["Faço de forma indireta, esperando que percebam",1],["Faço de forma clara na maioria das vezes",3],["Faço, mas só quando já estou no limite",1]]},
+ {d:"autoestima",t:"Quando a relação vai mal, o que passa pela sua cabeça?",o:[["Que o problema sou eu e que não mereço algo melhor",0],["Que preciso mudar para ser aceito(a)",1],["Que há coisas a ajustar dos dois lados",3],["Que a culpa é sempre da outra pessoa",1]]},
+ {d:"autoestima",t:"Você consegue se sentir inteiro(a) quando está sem relacionamento?",o:[["Sim, me sinto bem comigo",3],["Mais ou menos, sinto um vazio grande",1],["Não, fico desesperado(a) para ter alguém",0],["Consigo, mas evito ficar sozinho(a)",2]]},
+ {d:"padroes",t:"Olhando para seus relacionamentos passados, você percebe situações que se repetem?",o:[["Sim, e sinto que não consigo evitar",0],["Sim, e já estou trabalhando nisso",2],["Não percebo nada em comum",1],["Percebo alguns padrões e sei lidar com eles",3]]},
+ {d:"padroes",t:"Feridas de relações anteriores ainda influenciam como você se entrega hoje?",o:[["Muito; ainda me protejo demais",0],["Um pouco, em alguns momentos",2],["Quase nada; já elaborei o que vivi",3],["Não sei dizer",1]]}
+];
+const D = {
+ vinculo:{n:"Vínculo e segurança emocional",
+  a:["Seu vínculo tende a ser ativado por medo de perda ou de rejeição, o que pode gerar ansiedade, controle ou afastamento.","Em dor ou insegurança relacional"],
+  b:["Há momentos de segurança e outros de alerta; o vínculo oscila conforme o contexto.","Em oscilação emocional"],
+  c:["Você tende a se vincular com confiança e a tolerar a distância natural da relação.","Em equilíbrio"]},
+ limites:{n:"Limites e autorrespeito",
+  a:["Você tende a se anular para manter a paz, o que pode gerar ressentimento ao longo do tempo.","Pede atenção"],
+  b:["Você impõe limites em parte das situações, mas ainda cede ou evita em outras.","Em desenvolvimento"],
+  c:["Você consegue se posicionar com clareza e respeitar o espaço do outro.","Fortalecido"]},
+ comunicacao:{n:"Comunicação emocional",
+  a:["Mágoas e necessidades tendem a ficar guardadas ou sair em forma de conflito.","Pede atenção"],
+  b:["Você se comunica bem em alguns momentos, mas ainda usa caminhos indiretos.","Em desenvolvimento"],
+  c:["Você expressa sentimentos e pedidos de forma clara e aberta.","Fortalecido"]},
+ autoestima:{n:"Valor próprio",
+  a:["Seu valor parece depender muito da relação ou da aprovação do outro.","Pede atenção"],
+  b:["Seu valor próprio oscila conforme o momento do relacionamento.","Em desenvolvimento"],
+  c:["Você se sustenta emocionalmente, com ou sem relacionamento.","Fortalecido"]},
+ padroes:{n:"Repetição de padrões e feridas passadas",
+  a:["Experiências anteriores parecem se repetir e influenciar fortemente suas escolhas.","Pede atenção"],
+  b:["Você já percebe parte dos padrões e começa a lidar com eles.","Em desenvolvimento"],
+  c:["Você elaborou boa parte do que viveu e escolhe com mais consciência.","Fortalecido"]}
+};
+const DICA = {vinculo:"Observe, nas próximas semanas, o que acontece no seu corpo e nos seus pensamentos quando sente distância ou excesso de proximidade.",limites:"Treine um “não” pequeno por dia, em situações de baixo risco, e note como se sente depois.",comunicacao:"Experimente a estrutura: “Quando acontece X, eu sinto Y, e eu preciso de Z”.",autoestima:"Liste três qualidades suas que não dependem de nenhum relacionamento.",padroes:"Escreva o que se repetiu em cada relação passada e qual foi a sua parte em cada repetição."};
+// ====== FIM DA CONFIGURAÇÃO ======
+const app=document.getElementById("app");
+let S={step:"intro",i:0,a:[],nome:"",wa:"",em:""};
+function send(p){try{fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(p)}).catch(()=>{})}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(){
+ if(S.step==="intro"){
+  app.innerHTML=`<div class="tag">MAPA DOS PADRÕES NO AMOR</div><h1>Descubra seus padrões emocionais nos relacionamentos</h1><p>São ${Q.length} perguntas rápidas. No final, você recebe um relatório com seus pontos fortes, suas dores e onde vale a pena olhar com mais cuidado.</p><label for="n">Seu nome</label><input id="n" value="${esc(S.nome)}" autocomplete="given-name"><label for="w">Seu WhatsApp (com DDD)</label><input id="w" type="tel" inputmode="tel" value="${esc(S.wa)}" autocomplete="tel" placeholder="21 99999-9999"><label for="e">Seu e-mail (opcional)</label><input id="e" type="email" value="${esc(S.em)}" autocomplete="email"><div id="err" role="alert" style="color:var(--acc);font-weight:600;margin-top:12px"></div><div class="row"><button class="btn" id="go">Começar</button></div><small>Ao continuar, você autoriza que a mentora entre em contato com você sobre seu resultado e sobre a mentoria. Este material é uma ferramenta de autoconhecimento e não substitui avaliação psicológica ou psiquiátrica.</small>`;
+  document.getElementById("go").onclick=()=>{S.nome=document.getElementById("n").value.trim();S.wa=document.getElementById("w").value.trim();S.em=document.getElementById("e").value.trim();if(!S.nome||S.wa.replace(/\D/g,"").length<10){document.getElementById("err").textContent="Informe seu nome e um WhatsApp válido com DDD.";return}send({etapa:"inicio",nome:S.nome,whatsapp:S.wa,email:S.em,origem:"mapa-padroes-amor"});S.step="q";S.i=0;render()};
+ } else if(S.step==="q"){
+  const q=Q[S.i],sel=S.a[S.i];
+  app.innerHTML=`<div class="tag">PERGUNTA ${S.i+1} DE ${Q.length}</div><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${Q.length}" aria-valuenow="${S.i+1}"><i style="width:${(S.i+1)/Q.length*100}%"></i></div><h2>${esc(q.t)}</h2>${q.o.map((o,k)=>`<button class="opt${sel===k?" sel":""}" data-k="${k}">${esc(o[0])}</button>`).join("")}<div class="row"><button class="btn ghost" id="bk"${S.i===0?" disabled":""}>Voltar</button><button class="btn" id="nx"${sel===undefined?" disabled":""}>${S.i===Q.length-1?"Ver meu relatório":"Próxima"}</button></div>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{S.a[S.i]=+b.dataset.k;render()});
+  document.getElementById("bk").onclick=()=>{S.i--;render()};
+  document.getElementById("nx").onclick=()=>{if(S.i===Q.length-1)S.step="res";else S.i++;render();window.scrollTo(0,0)};
+ } else { result(); }
+}
+function result(){
+ const sc={},mx={};
+ Q.forEach((q,i)=>{sc[q.d]=(sc[q.d]||0)+q.o[S.a[i]][1];mx[q.d]=(mx[q.d]||0)+3});
+ const rows=Object.keys(D).map(k=>{const p=sc[k]/mx[k];const lv=p<.4?"a":p<.75?"b":"c";return {k,p,lv,txt:D[k][lv]}}).sort((x,y)=>x.p-y.p);
+ const total=Math.round(rows.reduce((s,r)=>s+r.p,0)/rows.length*100);
+ const fortes=rows.filter(r=>r.lv==="c"),atencao=rows.filter(r=>r.lv==="a"),dev=rows.filter(r=>r.lv==="b");
+ const nome=S.nome?esc(S.nome):"Você";
+ if(!S.sent){S.sent=1;send({etapa:"resultado",nome:S.nome,whatsapp:S.wa,email:S.em,indice:total,areas:rows.map(r=>D[r.k].n+": "+r.txt[1]).join(" | "),origem:"mapa-padroes-amor"})}
+ const perfil=`${nome}, seu índice geral de segurança emocional nos relacionamentos é de ${total}%. `+(fortes.length?`Seus pontos mais sólidos estão em ${fortes.map(r=>D[r.k].n.toLowerCase()).join(" e ")}. `:"")+(atencao.length?`As áreas que mais pedem cuidado agora são ${atencao.map(r=>D[r.k].n.toLowerCase()).join(" e ")}. `:"Não apareceu nenhuma área em alerta forte, o que é um bom sinal. ")+"Isso não é um rótulo: é um retrato do momento, que pode mudar com consciência e prática.";
+ const focus=rows.slice(0,2);
+ const msg=encodeURIComponent(`Olá! Sou ${S.nome}. Fiz o Mapa dos Padrões no Amor e meu índice foi ${total}%. Gostaria de conversar sobre a mentoria.`);
+ app.innerHTML=`<div class="tag">SEU RELATÓRIO</div><h1>Seu mapa emocional</h1><div class="card"><h3>Perfil geral</h3><p>${perfil}</p></div><h2 style="margin-top:28px">Por área</h2>${rows.map(r=>`<div class="card"><div class="lvl">${r.txt[1].toUpperCase()}</div><h3>${D[r.k].n}</h3><div class="meter"><i style="width:${Math.max(6,Math.round(r.p*100))}%"></i></div><p>${r.txt[0]}</p></div>`).join("")}<h2 style="margin-top:28px">Pontos de atenção</h2>${focus.map(r=>`<div class="card"><h3>${D[r.k].n}</h3><p>${DICA[r.k]}</p></div>`).join("")}<div class="cta"><h3 style="font-family:Fraunces,Georgia,serif;font-size:22px;margin:0 0 8px">Quer ir mais fundo?</h3><p style="margin:0 0 16px">Na mentoria, trabalhamos a origem desses padrões e construímos, passo a passo, relações mais saudáveis.</p><div class="row" style="margin-top:0">${WHATSAPP?`<a class="btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">Falar pelo WhatsApp</a>`:""}<button class="btn ghost" id="rs">Refazer o teste</button></div></div><small>Este relatório é uma ferramenta de autoconhecimento e não constitui diagnóstico clínico. Em caso de sofrimento intenso, procure um profissional de saúde mental.</small>`;
+ document.getElementById("rs").onclick=()=>{S={step:"intro",i:0,a:[],nome:S.nome,wa:S.wa,em:S.em};render();window.scrollTo(0,0)};
+ window.scrollTo(0,0);
+}
+render();
+</script>
+</body>
+</html>
