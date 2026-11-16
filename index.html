@@ -53,7 +53,7 @@ small{color:var(--mut);display:block;margin-top:20px}
 <script>
 // ====== CONFIGURAÇÃO (edite aqui) ======
 const WHATSAPP = "5521975206104";
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQmP30h9LUwh4U7fckzZP62mGoz8OlqRp5MHHiVzEIrdqwjas3nlzwrunL3GmUAPpY/exec"; // ex.: "5527999999999" (só números). Vazio = esconde o botão.
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjP-JBe_Np3OTk7susoGyEOfd7TZt7a2J69wWew_V50tWFVptlOdS7a4rUr__Hsblq/exec"; // ex.: "5527999999999" (só números). Vazio = esconde o botão.
 const Q = [
  {d:"vinculo",t:"Quando a pessoa que você ama demora para responder, o que costuma acontecer?",o:[["Imagino o pior e fico muito ansioso(a) até ela responder",0],["Finjo que não ligo e me afasto",1],["Fico incomodado(a), mas me ocupo e converso depois",3],["Sinto desconforto, mas lembro que há várias explicações possíveis",2]]},
  {d:"vinculo",t:"Quando alguém se aproxima demais emocionalmente, qual é sua primeira reação?",o:[["Quero me aproximar também, sem pressa",3],["Sinto necessidade de me afastar",1],["Temo ser abandonado(a) depois",0],["Desconfio das intenções da pessoa",1]]},
@@ -113,9 +113,14 @@ function result(){
  const total=Math.round(rows.reduce((s,r)=>s+r.p,0)/rows.length*100);
  const fortes=rows.filter(r=>r.lv==="c"),atencao=rows.filter(r=>r.lv==="a"),dev=rows.filter(r=>r.lv==="b");
  const nome=S.nome?esc(S.nome):"Você";
- if(!S.sent){S.sent=1;send({etapa:"resultado",nome:S.nome,whatsapp:S.wa,email:S.em,indice:total,areas:rows.map(r=>D[r.k].n+": "+r.txt[1]).join(" | "),origem:"mapa-padroes-amor"})}
  const perfil=`${nome}, seu índice geral de segurança emocional nos relacionamentos é de ${total}%. `+(fortes.length?`Seus pontos mais sólidos estão em ${fortes.map(r=>D[r.k].n.toLowerCase()).join(" e ")}. `:"")+(atencao.length?`As áreas que mais pedem cuidado agora são ${atencao.map(r=>D[r.k].n.toLowerCase()).join(" e ")}. `:"Não apareceu nenhuma área em alerta forte, o que é um bom sinal. ")+"Isso não é um rótulo: é um retrato do momento, que pode mudar com consciência e prática.";
  const focus=rows.slice(0,2);
+ if(!S.sent){S.sent=1;
+  const pt=perfil.replace(nome,S.nome||"Você");
+  const relatorio="PERFIL GERAL\n"+pt+"\n\nPOR ÁREA\n"+rows.map(r=>"• "+D[r.k].n+" ("+r.txt[1]+", "+Math.round(r.p*100)+"%)\n"+r.txt[0]).join("\n\n")+"\n\nPONTOS DE ATENÇÃO\n"+focus.map(r=>"• "+D[r.k].n+": "+DICA[r.k]).join("\n\n");
+  const respostas=Q.map((q,i)=>(i+1)+". "+q.t+"\n   Resposta: "+q.o[S.a[i]][0]).join("\n\n");
+  send({etapa:"resultado",nome:S.nome,whatsapp:S.wa,email:S.em,indice:total,areas:rows.map(r=>D[r.k].n+": "+r.txt[1]).join(" | "),relatorio:relatorio,respostas:respostas,origem:"mapa-padroes-amor"});
+ }
  const msg=encodeURIComponent(`Olá! Sou ${S.nome}. Fiz o Mapa dos Padrões no Amor e meu índice foi ${total}%. Gostaria de conversar sobre a mentoria.`);
  app.innerHTML=`<div class="tag">SEU RELATÓRIO</div><h1>Seu mapa emocional</h1><div class="card"><h3>Perfil geral</h3><p>${perfil}</p></div><h2 style="margin-top:28px">Por área</h2>${rows.map(r=>`<div class="card"><div class="lvl">${r.txt[1].toUpperCase()}</div><h3>${D[r.k].n}</h3><div class="meter"><i style="width:${Math.max(6,Math.round(r.p*100))}%"></i></div><p>${r.txt[0]}</p></div>`).join("")}<h2 style="margin-top:28px">Pontos de atenção</h2>${focus.map(r=>`<div class="card"><h3>${D[r.k].n}</h3><p>${DICA[r.k]}</p></div>`).join("")}<div class="cta"><h3 style="font-family:Fraunces,Georgia,serif;font-size:22px;margin:0 0 8px">Quer ir mais fundo?</h3><p style="margin:0 0 16px">Na mentoria, trabalhamos a origem desses padrões e construímos, passo a passo, relações mais saudáveis.</p><div class="row" style="margin-top:0">${WHATSAPP?`<a class="btn" style="display:flex;align-items:center;justify-content:center;text-decoration:none" href="https://wa.me/${WHATSAPP}?text=${msg}" target="_blank" rel="noopener">Falar pelo WhatsApp</a>`:""}<button class="btn ghost" id="rs">Refazer o teste</button></div></div><small>Este relatório é uma ferramenta de autoconhecimento e não constitui diagnóstico clínico. Em caso de sofrimento intenso, procure um profissional de saúde mental.</small>`;
  document.getElementById("rs").onclick=()=>{S={step:"intro",i:0,a:[],nome:S.nome,wa:S.wa,em:S.em};render();window.scrollTo(0,0)};
